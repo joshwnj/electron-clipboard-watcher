@@ -32,7 +32,8 @@ watcher.stop()
 ```
 
 */
-module.exports = function (opts={}) {
+module.exports = function (opts) {
+  opts = opts || {}
   const watchDelay = opts.watchDelay || 1000
 
   let lastText = clipboard.readText()
@@ -46,7 +47,8 @@ module.exports = function (opts={}) {
       lastImage = image
       return opts.onImageChange(image)
     }
-    else if (text && lastText !== text) {
+
+    if (text && lastText !== text) {
       lastText = text
       return opts.onTextChange(text)
     }

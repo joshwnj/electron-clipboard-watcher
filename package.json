@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/joshwnj/electron-clipboard-watcher/issues"
   },
-  "homepage": "https://github.com/joshwnj/electron-clipboard-watcher"
+  "homepage": "https://github.com/joshwnj/electron-clipboard-watcher",
+  "devDependencies": {
+    "standard": "^7.1.2"
+  }
 }
