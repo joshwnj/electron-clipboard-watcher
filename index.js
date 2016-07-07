@@ -43,12 +43,12 @@ module.exports = function (opts) {
     const text = clipboard.readText()
     const image = clipboard.readImage()
 
-    if (!image.isEmpty() && lastImage.toDataURL() !== image.toDataURL()) {
+    if (opts.onImageChange && imageHasDiff(image, lastImage)) {
       lastImage = image
       return opts.onImageChange(image)
     }
 
-    if (text && lastText !== text) {
+    if (opts.onTextChange && textHasDiff(text, lastText)) {
       lastText = text
       return opts.onTextChange(text)
     }
@@ -57,4 +57,22 @@ module.exports = function (opts) {
   return {
     stop: () => clearInterval(intervalId)
   }
+}
+
+/*
+
+Tell if there is any difference between 2 images
+
+*/
+function imageHasDiff (a, b) {
+  return !a.isEmpty() && b.toDataURL() !== a.toDataURL()
+}
+
+/*
+
+Tell if there is any difference between 2 strings
+
+*/
+function textHasDiff (a, b) {
+  return a && b !== a
 }
