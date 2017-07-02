@@ -18,11 +18,17 @@ clipboardWatcher({
   // (optional) delay in ms between polls
   watchDelay: 1000,
 
+  // (optional) limit callbacks to only onAnyChange, default is false
+  callOnlyAny : true,
+
   // handler for when image data is copied into the clipboard
   onImageChange: function (nativeImage) { ... },
 
   // handler for when text data is copied into the clipboard
   onTextChange: function (text) { ... }
+
+  // handler for when any data is copied into the clipboard
+  onAnyChange: function (text) { ... }
 })
 ```
 
