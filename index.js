@@ -42,6 +42,7 @@ module.exports = function (opts) {
   opts = opts || {}
   const watchDelay = opts.watchDelay || 1000
   const callOnlyAny = opts.callOnlyAny || false;
+
   let lastText = clipboard.readText()
   let lastImage = clipboard.readImage()
 
