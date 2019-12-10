@@ -40,17 +40,20 @@ module.exports = function (opts) {
   let lastImage = clipboard.readImage()
 
   const intervalId = setInterval(() => {
-    const text = clipboard.readText()
-    const image = clipboard.readImage()
-
-    if (opts.onImageChange && imageHasDiff(image, lastImage)) {
-      lastImage = image
-      return opts.onImageChange(image)
+    if (opts.onImageChange) {
+      const image = clipboard.readImage()
+      if (imageHasDiff(image, lastImage)) {
+        lastImage = image
+        return opts.onImageChange(image)
+      }
     }
 
-    if (opts.onTextChange && textHasDiff(text, lastText)) {
-      lastText = text
-      return opts.onTextChange(text)
+    if (opts.onTextChange) {
+      const text = clipboard.readText()
+      if (textHasDiff(text, lastText)) {
+        lastText = text
+        return opts.onTextChange(text)
+      }
     }
   }, watchDelay)
 
